@@ -1,6 +1,5 @@
 package com.jct.pma.entities;
 
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,27 +12,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq",allocationSize = 1)
 	private long employeeId;
 	private String firstName;
 	private String lastName;
 	private String email;
-	
-	@ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST}
-	, fetch = FetchType.LAZY)
+
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,CascadeType.PERSIST},
+			fetch = FetchType.LAZY)
 	@JoinTable(name = "project_employee",
-	joinColumns = @JoinColumn(name = "employee_id"),
-	inverseJoinColumns = @JoinColumn(name = "project_id"))
+	joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
 	private List<Project> projects;
-	
-	public Employee() {	}
+
+	public Employee() {
+	}
 
 	public Employee(String firstName, String lastName, String email) {
 		super();
@@ -41,8 +40,6 @@ public class Employee {
 		this.lastName = lastName;
 		this.email = email;
 	}
-	
-	
 
 	public List<Project> getProjects() {
 		return projects;
@@ -83,7 +80,5 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
+
 }

@@ -1,5 +1,6 @@
 package com.jct.pma.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,14 +13,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class Project {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
+	@SequenceGenerator(name = "project_seq", sequenceName = "project_seq",allocationSize = 1)
+
 	private long projectId;
 
 	private String name;
@@ -84,6 +87,13 @@ public class Project {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void addEmployee(Employee emp) {
+		if(employees==null) {
+			employees = new ArrayList<>();
+		}
+		employees.add(emp);
 	}
 
 }
