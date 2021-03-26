@@ -18,6 +18,8 @@ import com.jct.pma.dto.ChartData;
 import com.jct.pma.dto.EmployeeProject;
 import com.jct.pma.entities.Employee;
 import com.jct.pma.entities.Project;
+import com.jct.pma.services.EmployeeService;
+import com.jct.pma.services.ProjectService;
 
 @Controller
 public class HomeController {
@@ -26,10 +28,10 @@ public class HomeController {
 	private String var;
 
 	@Autowired
-	ProjectRepository proRepo;
+	ProjectService proService;
 
 	@Autowired
-	EmployeeRepository empRepo;
+	EmployeeService empService;
 
 	@GetMapping("/")
 	public String displayHome(Model model) throws JsonProcessingException {
@@ -39,10 +41,10 @@ public class HomeController {
 		Map<String, Object> map = new HashMap<>();
 
 		// quering the database for projects
-		List<Project> projects = proRepo.findAll();
+		List<Project> projects = proService.getAll();
 		model.addAttribute("projects", projects);
 
-		List<ChartData> projectData = proRepo.getProjectStatus();
+		List<ChartData> projectData = proService.getProjectStatus();
 
 		// lets conver projectData object into a json structure for use in javascript
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -52,7 +54,7 @@ public class HomeController {
 		model.addAttribute("projectStatusCnt",jsonString);
 
 		// quering the database for employees
-		List<EmployeeProject> employeesProjectCnt = empRepo.employeeProjects();
+		List<EmployeeProject> employeesProjectCnt = empService.employeeProjects();
 		model.addAttribute("employeesListProjectsCnt", employeesProjectCnt);
 		return "main/home";
 	}
