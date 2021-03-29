@@ -10,8 +10,8 @@ import com.jct.pma.entities.Employee;
 
 public interface EmployeeRepository extends CrudRepository<Employee,Long>{
 
-//	@Override
-//	public List<Employee> findAll();
+	@Override
+	public List<Employee> findAll();
 	
 	@Query(nativeQuery = true, value = "Select e.first_name as firstName, e.last_name as lastName, COUNT(pe.employee_id) as projectCount "
 			+ "From employee e left join project_employee pe ON pe.employee_id = e.employee_id "

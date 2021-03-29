@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Project {
@@ -42,6 +44,7 @@ public class Project {
 
 	}
 
+	@JsonIgnore
 	public List<Employee> getEmployees() {
 		return employees;
 	}

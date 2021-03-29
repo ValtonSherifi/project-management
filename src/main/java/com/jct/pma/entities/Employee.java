@@ -3,6 +3,7 @@ package com.jct.pma.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,14 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.BatchSize;
+import org.springframework.boot.convert.DataSizeUnit;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 
 @Entity
 public class Employee {
@@ -21,8 +30,18 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
 	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq",allocationSize = 1)
 	private long employeeId;
+	
+	@NotNull
+	@Size(min = 2, max = 255)
 	private String firstName;
+	
+	@NotNull
+	@Size(min = 1, max = 255)
 	private String lastName;
+	
+	@NotNull
+	@Email
+	@Column(unique = true)
 	private String email;
 
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,CascadeType.PERSIST},
@@ -41,6 +60,7 @@ public class Employee {
 		this.email = email;
 	}
 
+	@JsonIgnore
 	public List<Project> getProjects() {
 		return projects;
 	}
