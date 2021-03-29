@@ -2,17 +2,14 @@ package com.jct.pma.security;
 
 import javax.activation.DataSource;
 
-import org.aspectj.weaver.ast.And;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -26,16 +23,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 			.usersByUsernameQuery("select username, password, enabled "+
-					"from user_accounts_seq where username=?")
+				"from user_accounts where username = ?" )
 			.authoritiesByUsernameQuery("select username, role "+
-					"from user_accounts where username = ?")
+				"from user_accounts where username = ?")
 			.dataSource(dataSource)
 			.passwordEncoder(bCryptEncoder);
-			
+		
 	}
+			
+
 	
 //	@Bean
 //	public PasswordEncoder getPasswordEncoder() {
@@ -55,6 +54,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.and()
 //			.formLogin().loginPage("/login-page") when we create a login controller/page
 			.formLogin();
+		
+			/* (How to set a role in the database
+			 * update user_accounts
+				set role = 'ROLE_ADMIN'
+			 	where username='valton'
+			 *
+			 * we append 'ROLE_' beacuse of the method hasRole("ADMIN");
+			 * 
+			 * if we want in the db to type 'set role = 'ADMIN'
+			 * we should use the hasAuthority("ADMIN") method
+			 * */
 				
 	}
 	
