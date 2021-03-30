@@ -20,7 +20,7 @@ public class ProjectService {
 	}
 	
 	public List<Project> getAll(){
-		return proRepo.findAll();
+		return (List<Project>) proRepo.findAll();
 	}
 	
 	public List<ChartData> getProjectStatus(){

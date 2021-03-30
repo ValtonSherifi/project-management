@@ -40,7 +40,7 @@ public class ProjectController {
 
 		Project aProject = new Project();
 		
-		List<Employee> employees = empService.getAll();
+		Iterable<Employee> employees =  empService.getAll();
 
 		model.addAttribute("project", aProject);
 		model.addAttribute("allEmployees", employees);
