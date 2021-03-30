@@ -21,6 +21,7 @@ import org.hibernate.annotations.BatchSize;
 import org.springframework.boot.convert.DataSizeUnit;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jct.pma.validators.UniqueValue;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -41,7 +42,7 @@ public class Employee {
 	
 	@NotNull
 	@Email
-	@Column(unique = true)
+	@UniqueValue
 	private String email;
 
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,CascadeType.PERSIST},
