@@ -46,10 +46,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-//			.antMatchers("/projects/new").hasRole("ADMIN") // first priority
-//			.antMatchers("/employees/new").hasRole("ADMIN")// second priority
-//			.antMatchers("/projects/save").hasRole("ADMIN")//..
-//			.antMatchers("/employees/save").hasRole("ADMIN")//fourth priority
+			.antMatchers("/projects/new").hasRole("ADMIN") // first priority
+			.antMatchers("/employees/new").hasRole("ADMIN")// second priority
+			.antMatchers("/projects/save").hasRole("ADMIN")//..
+			.antMatchers("/employees/save").hasRole("ADMIN")//fourth priority
+			.antMatchers("/projects/delete").hasRole("ADMIN")
+			.antMatchers("/employees/update").hasRole("ADMIN")
+			.antMatchers("/projects/update").hasRole("ADMIN")
+			.antMatchers("/employees/delete").hasRole("ADMIN")
+
+			
 			.antMatchers("/","/**").permitAll()// every one should have access everywhere -- least priority
 			.and()
 //			.formLogin().loginPage("/login-page") when we create a login controller/page
