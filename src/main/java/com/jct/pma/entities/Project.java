@@ -1,6 +1,7 @@
 package com.jct.pma.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,16 +15,17 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.sun.istack.NotNull;
 
 @Entity
 public class Project {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
-	@SequenceGenerator(name = "project_seq", sequenceName = "project_seq",allocationSize = 1)
+	@SequenceGenerator(name = "project_seq", sequenceName = "project_seq", allocationSize = 1)
 	private long projectId;
 
 	private String name;
@@ -32,15 +34,35 @@ public class Project {
 
 	private String description;
 
-	@ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST}
-	, fetch = FetchType.LAZY)
-	@JoinTable(name = "project_employee",
-	joinColumns = @JoinColumn(name = "project_id"),
-	inverseJoinColumns = @JoinColumn(name = "employee_id"))
+	@NotBlank(message = "*Date can not be empty")
+	private Date startDate;
+	
+	@NotBlank(message = "*Date can not be empty")
+	private Date endDate;
+
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
+			CascadeType.PERSIST }, fetch = FetchType.LAZY)
+	@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
 	List<Employee> employees;
 
 	public Project() {
 
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	@JsonIgnore
@@ -90,9 +112,9 @@ public class Project {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public void addEmployee(Employee emp) {
-		if(employees==null) {
+		if (employees == null) {
 			employees = new ArrayList<>();
 		}
 		employees.add(emp);
