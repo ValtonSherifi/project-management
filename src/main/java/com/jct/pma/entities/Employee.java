@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.BatchSize;
@@ -32,16 +33,16 @@ public class Employee {
 	@SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq",allocationSize = 1)
 	private long employeeId;
 	
-	@NotNull
-	@Size(min = 2, max = 255)
+	@NotBlank(message = "*Must give a First Name")
+	@Size(min = 2, max = 50)
 	private String firstName;
 	
-	@NotNull
-	@Size(min = 1, max = 255)
+	@NotBlank(message = "*Must give a Last Name")
+	@Size(min = 1, max = 50)
 	private String lastName;
 	
-	@NotNull
-	@Email
+	@NotBlank(message = "*Must give an Email Address")
+	@Email(message = "*Must be a valid email address")
 	@UniqueValue
 	private String email;
 

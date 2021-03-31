@@ -24,7 +24,7 @@
 			<div class="form-group row">
 				<input type="text" placeholder="First Name: "
 					th:field="${employee.firstName}">
-					 <span
+					 <span style="color:red"
 					th:if="${#fields.hasErrors('firstName')}"
 					th:errors="${employee.firstName}"> </span>
 			</div>
@@ -33,6 +33,7 @@
 				<input type="text" placeholder="Last Name: "
 					th:field="${employee.lastName}">
 					<span
+					style="color:red"
 					th:if="${#fields.hasErrors('lastName')}"
 					th:errors="${employee.lastName}"> </span>
 			</div>
@@ -41,6 +42,7 @@
 				<input type="text" placeholder="Email: "
 					th:field="${employee.email}">
 					<span
+					style="color:red"
 					th:if="${#fields.hasErrors('email')}"
 					th:errors="${employee.email}"> </span>
 			</div>
