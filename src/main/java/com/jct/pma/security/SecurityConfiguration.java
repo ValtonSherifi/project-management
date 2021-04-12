@@ -32,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.dataSource(dataSource)
 			.passwordEncoder(bCryptEncoder);
 		
+		
 	}
 			
 
@@ -60,6 +61,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			.and()
 //			.formLogin().loginPage("/login-page") when we create a login controller/page
 			.formLogin();
+		
+		
+			http.csrf().disable();
+			http.headers().frameOptions().disable();
 		
 			/* (How to set a role in the database
 			 * update user_accounts
