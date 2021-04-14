@@ -22,6 +22,12 @@ The Rrojects directory, and we try to add a new project...
 
 ![projects](https://user-images.githubusercontent.com/24781579/114740026-bdf42680-9d49-11eb-851e-ce182e1e662f.png)
 
+We must sign in before we try to do any of the CRUD, so we logged in as a dummy user with USER_ROLE 
+
+![projects](https://user-images.githubusercontent.com/24781579/114742785-5ab7c380-9d4c-11eb-8aa2-b79f13e5102f.png)
+
+and it redirect us to error 403:forbidden. We must have a ADMIN_ROLE to use CRUD operations
+
 
 
 
