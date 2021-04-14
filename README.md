@@ -6,3 +6,8 @@ project and the involvement of the employees in projects.
 
 ## Getting Started
 
+![screadme](https://user-images.githubusercontent.com/24781579/114738381-335ef780-9d48-11eb-838f-ad6ee4ae06f6.png)
+
+
+
+
