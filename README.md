@@ -30,6 +30,11 @@ and it redirect us to error 403:forbidden. We must have a ADMIN_ROLE to use CRUD
 
 ![projects](https://user-images.githubusercontent.com/24781579/114740681-5c808780-9d4a-11eb-8d24-67f95841ec0d.png)
 
+We logged out, and logged in with a user with ADMIN_ROLE and added a new project
+
+![projects](https://user-images.githubusercontent.com/24781579/114743405-f3e6da00-9d4c-11eb-86d3-39cfd8a956c0.png)
+
+
 
 
 
