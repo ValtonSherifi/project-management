@@ -37,6 +37,10 @@ We logged out, and logged in with a user with ADMIN_ROLE and added a new project
 And changes happenned all over our application even so in our database
 ![projects](https://user-images.githubusercontent.com/24781579/114743812-517b2680-9d4d-11eb-8bfd-f9463a744528.png)
 
+We also have a beautiful project timeline chart
+![projects](https://user-images.githubusercontent.com/24781579/114744104-9ef79380-9d4d-11eb-95d7-22eb5c37b10c.png)
+
+
 
 
 
