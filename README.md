@@ -28,6 +28,8 @@ We must sign in before we try to do any of the CRUD, so we logged in as a dummy 
 
 and it redirect us to error 403:forbidden. We must have a ADMIN_ROLE to use CRUD operations
 
+![projects](https://user-images.githubusercontent.com/24781579/114740681-5c808780-9d4a-11eb-8d24-67f95841ec0d.png)
+
 
 
 
