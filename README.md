@@ -14,9 +14,14 @@ Home page scrolled
 
 ![screadme](https://user-images.githubusercontent.com/24781579/114738687-7d47dd80-9d48-11eb-9cef-66abe816f1f0.png)
 
-The employee directory 
+The Employee directory 
 
 ![screadme](https://user-images.githubusercontent.com/24781579/114739776-78cff480-9d49-11eb-9c7d-1eb7088e7ff9.png)
+
+The Rrojects directory, and we try to add a new project...
+
+![projects](https://user-images.githubusercontent.com/24781579/114740026-bdf42680-9d49-11eb-851e-ce182e1e662f.png)
+
 
 
 
